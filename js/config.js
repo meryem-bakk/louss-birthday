@@ -19,7 +19,7 @@ const CONFIG = {
 
   // Puzzle : idéalement une photo carrée (sinon elle est recadrée au centre).
   puzzleImage: "assets/puzzle/us.jpg",         // ← ex. "assets/puzzle/photo.jpg"
-  puzzleCols: 4,                            // 4 colonnes × 2 lignes = 8 pièces
+  puzzleCols: 3,                            // 3 colonnes × 2 lignes = 6 pièces
   puzzleRows: 2,
 
   // Photo de la page finale (vide = on réutilise l'image du puzzle).

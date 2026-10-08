@@ -406,6 +406,8 @@ main { position: relative; z-index: 2; }
 .piece.is-selected .piece__img { outline: 3px dashed var(--accent); outline-offset: -3px; transform: scale(.92); }
 .piece:focus-visible .piece__img { outline: 3px solid var(--accent); outline-offset: -3px; }
 .piece.is-correct .piece__img { animation: correct .9s var(--ease); }
+.piece.is-home { cursor: default; }
+.puzzle-board:not(.is-solved) .piece.is-home .piece__img { box-shadow: inset 0 0 0 3px rgba(168, 185, 163, .95), 0 2px 6px rgba(90, 74, 74, .14); }
 @keyframes correct { 40% { filter: brightness(1.15); box-shadow: 0 0 0 3px rgba(255, 255, 255, .9), 0 0 18px rgba(233, 184, 196, .9); } }
 .puzzle-board.is-solved { box-shadow: 0 30px 60px -28px rgba(158, 82, 103, .6), 0 0 0 8px #fff; }
 .puzzle-board.is-solved .piece { padding: 0; cursor: default; }

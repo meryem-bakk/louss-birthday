@@ -97,6 +97,8 @@ function initPuzzle() {
 
   /* ---------- Positions ---------- */
   const slotOf = (el) => order.indexOf(+el.dataset.id);
+  // A piece in its right place is locked (glows softly) — makes the puzzle gentler
+  const isHome = (el) => slotOf(el) === +el.dataset.id;
 
   function slotAt(x, y) {
     const r = board.getBoundingClientRect();
@@ -135,8 +137,8 @@ function initPuzzle() {
     movesEl.textContent = moves;
     FX.sound.play('pop');
     [a, b].forEach((el) => {
-      if (slotOf(el) === +el.dataset.id) {
-        setTimeout(() => { el.classList.remove('is-correct'); void el.offsetWidth; el.classList.add('is-correct'); }, 380);
+      if (isHome(el)) {
+        setTimeout(() => { el.classList.remove('is-correct'); void el.offsetWidth; el.classList.add('is-correct', 'is-home'); }, 380);
       }
     });
     if (order.every((id, slot) => id === slot)) {
@@ -151,7 +153,7 @@ function initPuzzle() {
     selected = null;
   }
   function tap(el) {
-    if (solved) return;
+    if (solved || isHome(el)) return;
     if (!selected) { selected = el; el.classList.add('is-selected'); return; }
     if (selected === el) { clearSelected(); return; }
     const first = selected;
@@ -169,7 +171,7 @@ function initPuzzle() {
   function onDown(e) {
     if (solved || drag || e.button > 0) return;
     const el = e.target.closest('.piece');
-    if (!el) return;
+    if (!el || isHome(el)) return;
     e.preventDefault();
     drag = { el, x0: e.clientX, y0: e.clientY, dx: 0, dy: 0, moved: false, id: e.pointerId };
     board.setPointerCapture(e.pointerId);
@@ -188,7 +190,7 @@ function initPuzzle() {
     drag.el.style.transform = `translate(${drag.dx}px, ${drag.dy}px) scale(1.06)`;
     const s = slotAt(e.clientX, e.clientY);
     const over = s >= 0 ? pieces[order[s]] : null;
-    setTarget(over && over !== drag.el ? over : null);
+    setTarget(over && over !== drag.el && !isHome(over) ? over : null);
   }
   function onUp(e) {
     if (!drag || e.pointerId !== drag.id) return;
@@ -222,6 +224,7 @@ function initPuzzle() {
     const rects = animate ? pieces.map((p) => p.getBoundingClientRect()) : [];
     order = ids;
     order.forEach((id, slot) => place(pieces[id], slot, rects[id]));
+    pieces.forEach((el) => el.classList.toggle('is-home', isHome(el)));
   }
 
   function togglePeek() {

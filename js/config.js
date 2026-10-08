@@ -1,4 +1,4 @@
-/* =====================================================================
+﻿/* =====================================================================
    🎀  PERSONNALISATION — tout se modifie ici, sans toucher à la logique
    ---------------------------------------------------------------------
    • {name}, {age}, {from} et {birthday} sont remplacés automatiquement
@@ -18,12 +18,12 @@ const CONFIG = {
   musicVolume: 0.5,
 
   // Puzzle : idéalement une photo carrée (sinon elle est recadrée au centre).
-  puzzleImage: "assets/puzzle/photo.svg",   // ← ex. "assets/puzzle/photo.jpg"
+  puzzleImage: "assets/puzzle/us.svg",         // ← ex. "assets/puzzle/photo.jpg"
   puzzleSize: 4,                            // 4 → 4 × 4 = 16 pièces (3 = facile, 5 = difficile)
 
   // Photo de la page finale (vide = on réutilise l'image du puzzle).
   finalPhoto: "",                           // ← ex. "assets/images/us.jpg"
-  photoCaption: "you & me ♡",
+  photoCaption: "Loussane & me ♡",
 
   /* --- 💌 La lettre ------------------------------------------------- */
   letter: {

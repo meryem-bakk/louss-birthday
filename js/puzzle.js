@@ -64,18 +64,23 @@ function initPuzzle() {
       { autoAlpha: 1, scale: 1, duration: 0.6, stagger: { each: 0.03, from: 'random' }, ease: 'back.out(1.6)', clearProps: 'transform' });
   }
 
-  // Crops non-square photos to a centred square (falls back to the raw file)
+  // Keeps the photo's own shape (between 3:4 and 3:2): the board takes the same ratio.
+  // Photos outside that range are cropped around the centre. Resolves to the image URL.
   function prepareImage(src) {
+    const MIN = 3 / 4, MAX = 3 / 2;
     return new Promise((resolve) => {
       const img = new Image();
       img.onload = () => {
         const w = img.naturalWidth, h = img.naturalHeight;
-        if (!w || !h || Math.abs(w - h) < 4 || /\.svg(\?|$)/i.test(src)) return resolve(src);
+        const ratio = w && h ? Math.min(MAX, Math.max(MIN, w / h)) : 1;
+        board.style.aspectRatio = String(ratio);
+        if (!w || !h || Math.abs(w / h - ratio) < 0.01 || /\.svg(\?|$)/i.test(src)) return resolve(src);
         try {
-          const s = Math.min(w, h), out = Math.min(s, 1000);
+          const cw = Math.min(w, h * ratio), ch = cw / ratio, scale = Math.min(1, 1200 / cw);
           const c = document.createElement('canvas');
-          c.width = c.height = out;
-          c.getContext('2d').drawImage(img, (w - s) / 2, (h - s) / 2, s, s, 0, 0, out, out);
+          c.width = Math.round(cw * scale);
+          c.height = Math.round(ch * scale);
+          c.getContext('2d').drawImage(img, (w - cw) / 2, (h - ch) / 2, cw, ch, 0, 0, c.width, c.height);
           c.toBlob((blob) => resolve(blob ? URL.createObjectURL(blob) : src), 'image/jpeg', 0.88);
         } catch (e) {
           resolve(src);
@@ -92,9 +97,8 @@ function initPuzzle() {
   function slotAt(x, y) {
     const r = board.getBoundingClientRect();
     if (x < r.left || x > r.right || y < r.top || y > r.bottom) return -1;
-    const cell = r.width / N;
-    const col = Math.min(N - 1, Math.floor((x - r.left) / cell));
-    const row = Math.min(N - 1, Math.floor((y - r.top) / cell));
+    const col = Math.min(N - 1, Math.floor(((x - r.left) / r.width) * N));
+    const row = Math.min(N - 1, Math.floor(((y - r.top) / r.height) * N));
     return row * N + col;
   }
 

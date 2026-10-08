@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Happy Birthday ♡ — styles (mobile first)
    ========================================================= */
 
@@ -370,7 +370,7 @@ main { position: relative; z-index: 2; }
 .puzzle-board {
   --n: 4;
   position: relative;
-  width: min(100%, 460px, 58svh);
+  width: min(100%, 520px, 58svh);
   aspect-ratio: 1;
   border-radius: 18px;
   background: rgba(245, 221, 227, .7);

@@ -18,7 +18,7 @@ const CONFIG = {
   musicVolume: 0.5,
 
   // Puzzle : idéalement une photo carrée (sinon elle est recadrée au centre).
-  puzzleImage: "assets/puzzle/us.webp",         // ← ex. "assets/puzzle/photo.jpg"
+  puzzleImage: "assets/puzzle/us.jpg",         // ← ex. "assets/puzzle/photo.jpg"
   puzzleSize: 4,                            // 4 → 4 × 4 = 16 pièces (3 = facile, 5 = difficile)
 
   // Photo de la page finale (vide = on réutilise l'image du puzzle).

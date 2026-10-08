@@ -289,18 +289,13 @@ function initCakeBuilder() {
       digits.forEach((d, i) => {
         const x = T.top.cx + (i - (digits.length - 1) / 2) * 30;
         html += at(x, T.top.top + 5, `<text x="0" y="0" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif"
-          font-weight="600" font-size="58" style="font-variant-numeric: lining-nums" fill="${['#F5C2CF', '#D9CBEF'][i % 2]}" stroke="#9E5267" stroke-width="1.4" paint-order="stroke">${d}</text><g class="num-flame">${flame(0)}</g>`);
+          font-weight="600" font-size="58" style="font-variant-numeric: lining-nums" fill="${['#F5C2CF', '#D9CBEF'][i % 2]}" stroke="#9E5267" stroke-width="1.4" paint-order="stroke">${d}</text>${flame(-36)}`);
       });
     } else if (style !== 'none') {
       const n = state.candleCount === 'age' ? AGE : +state.candleCount;
       candlePositions(n).forEach((p, i) => { html += at(p.x, p.y, candle(style, i, n)); });
     }
     g.innerHTML = html;
-    // Sit each flame right on top of its digit, whatever the font's figure height
-    g.querySelectorAll('.num-flame').forEach((fl) => {
-      const box = fl.previousElementSibling.getBBox();
-      fl.setAttribute('transform', `translate(0,${f1(box.y + 3)})`);
-    });
     if (animate && html) {
       const els = g.querySelectorAll('.pop');
       gsap.fromTo(els, { autoAlpha: 0, y: -90 },

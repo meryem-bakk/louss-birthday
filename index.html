@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Happy Birthday ♡</title>
+  <meta name="description" content="A little birthday gift, made with love.">
+  <meta name="theme-color" content="#FFF9F3">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E">
+
+  <script>document.documentElement.classList.add('preload');</script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Inter:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Scripts (defer = executed in order, after the HTML is parsed) -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="js/config.js"></script>
+  <script defer src="js/effects.js"></script>
+  <script defer src="js/letter.js"></script>
+  <script defer src="js/puzzle.js"></script>
+  <script defer src="js/cake.js"></script>
+  <script defer src="js/bouquet.js"></script>
+  <script defer src="js/main.js"></script>
+</head>
+
+<body data-section="landing">
+
+  <!-- Reusable floral drawings -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="blossom" viewBox="-20 -20 40 40">
+      <g fill="#F5DDE3">
+        <circle cx="0" cy="-9" r="8"/><circle cx="8.6" cy="-2.8" r="8"/><circle cx="5.3" cy="7.3" r="8"/>
+        <circle cx="-5.3" cy="7.3" r="8"/><circle cx="-8.6" cy="-2.8" r="8"/>
+      </g>
+      <circle r="4.5" fill="#E9B8C4"/>
+      <circle r="1.8" fill="#9E5267" opacity=".6"/>
+    </symbol>
+    <symbol id="sprig" viewBox="0 0 200 200">
+      <path d="M10,192 C60,150 92,110 120,40" fill="none" stroke="#A8B9A3" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M96,96 C118,96 138,90 156,84" fill="none" stroke="#A8B9A3" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M40,166 C29,142 44,126 62,128 C64,148 55,161 40,166Z" fill="#A8B9A3" opacity=".85"/>
+      <path d="M57,150 C80,149 93,163 89,176 C70,177 60,166 57,150Z" fill="#C3D0BE"/>
+      <path d="M76,116 C66,92 80,78 97,82 C99,102 91,113 76,116Z" fill="#A8B9A3" opacity=".9"/>
+      <path d="M90,103 C112,100 126,113 122,125 C104,127 93,118 90,103Z" fill="#C3D0BE"/>
+      <path d="M104,73 C98,52 110,40 124,44 C124,62 117,70 104,73Z" fill="#A8B9A3"/>
+      <path d="M128,90 C134,74 148,72 156,80 C150,94 140,96 128,90Z" fill="#C3D0BE"/>
+      <use href="#blossom" x="104" y="20" width="36" height="36"/>
+      <g transform="translate(160,82)">
+        <circle r="7" fill="#E9E1F1"/><circle cx="7" cy="-4" r="5" fill="#E9E1F1"/><circle cx="2" cy="-10" r="4" fill="#DCCFEA"/>
+      </g>
+      <circle cx="50" cy="128" r="4" fill="#E9B8C4"/><circle cx="96" cy="78" r="3" fill="#F5DDE3"/>
+    </symbol>
+  </svg>
+
+  <!-- Soft ambient background -->
+  <div class="ambient" aria-hidden="true">
+    <span class="blob blob--rose"></span>
+    <span class="blob blob--lavender"></span>
+    <span class="blob blob--sage"></span>
+    <svg class="corner corner--tl" viewBox="0 0 200 200"><use href="#sprig"/></svg>
+    <svg class="corner corner--br" viewBox="0 0 200 200"><use href="#sprig"/></svg>
+  </div>
+  <canvas id="petalCanvas" class="fx-canvas fx-canvas--petals" aria-hidden="true"></canvas>
+
+  <!-- Top bar: progress + music -->
+  <header class="topbar">
+    <nav class="steps" id="steps" aria-label="Your journey">
+      <ol>
+        <li><button class="step-btn" type="button" data-step="letter" aria-label="01 — Letter"><span>01</span></button><span class="step-label">Letter</span></li>
+        <li><button class="step-btn" type="button" data-step="puzzle" aria-label="02 — Puzzle"><span>02</span></button><span class="step-label">Puzzle</span></li>
+        <li><button class="step-btn" type="button" data-step="cake" aria-label="03 — Cake"><span>03</span></button><span class="step-label">Cake</span></li>
+        <li><button class="step-btn" type="button" data-step="bouquet" aria-label="04 — Bouquet"><span>04</span></button><span class="step-label">Bouquet</span></li>
+      </ol>
+    </nav>
+    <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false" aria-label="Turn music on">
+      <svg class="icon icon--off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg>
+      <svg class="icon icon--on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+    </button>
+  </header>
+
+  <main>
+
+    <!-- ============ LANDING ============ -->
+    <section id="landing" class="screen is-active" aria-labelledby="heroTitle">
+      <div class="hero">
+        <svg class="hero__art" viewBox="0 0 240 170" aria-hidden="true">
+          <use href="#sprig" width="150" height="150" transform="translate(10,22)"/>
+          <use href="#sprig" width="150" height="150" transform="translate(230,22) scale(-1,1)"/>
+          <path d="M120,138 C96,122 102,100 120,112 C138,100 144,122 120,138Z" fill="#E9B8C4"/>
+          <use href="#blossom" x="100" y="38" width="40" height="40"/>
+        </svg>
+        <p class="eyebrow hero__kicker" data-config="texts.landingKicker"></p>
+        <h1 class="hero__title" id="heroTitle">Happy Birthday,<br><em data-config="name"></em> <span class="heart">♡</span></h1>
+        <p class="hero__subtitle" data-config="texts.landingSubtitle"></p>
+        <button class="btn btn--big" type="button" data-goto="letter" data-config="texts.startButton"></button>
+      </div>
+    </section>
+
+    <!-- ============ 01 · LETTER ============ -->
+    <section id="letter" class="screen" aria-labelledby="letterTitle">
+      <div class="envelope-stage">
+        <p class="eyebrow">01 — The letter</p>
+        <h2 class="title" id="letterTitle" tabindex="-1" data-config="texts.letterIntro"></h2>
+        <button class="envelope" id="envelope" type="button" aria-label="Open the envelope" aria-expanded="false">
+          <span class="envelope__back"></span>
+          <span class="envelope__paper"></span>
+          <span class="envelope__front"></span>
+          <span class="envelope__flap"></span>
+          <span class="envelope__seal" aria-hidden="true">♡</span>
+        </button>
+        <p class="hint hint--pulse">Tap the envelope</p>
+      </div>
+
+      <article class="letter" id="letterSheet" hidden>
+        <div class="letter__paper">
+          <svg class="letter__flower" viewBox="0 0 200 200" aria-hidden="true"><use href="#sprig"/></svg>
+          <p class="letter__date" data-config="birthday"></p>
+          <p class="letter__greeting"></p>
+          <div class="letter__body"></div>
+          <p class="letter__signoff"></p>
+          <p class="letter__signature"></p>
+        </div>
+        <div class="letter__next">
+          <p data-config="texts.letterOutro"></p>
+          <button class="btn" type="button" data-goto="puzzle">Continue →</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ 02 · PUZZLE ============ -->
+    <section id="puzzle" class="screen" aria-labelledby="puzzleTitle">
+      <header class="section-head">
+        <p class="eyebrow">02 — The puzzle</p>
+        <h2 class="title" id="puzzleTitle" tabindex="-1" data-config="texts.puzzleTitle"></h2>
+        <p class="subtitle" data-config="texts.puzzleSubtitle"></p>
+      </header>
+      <div class="puzzle-wrap">
+        <div class="puzzle-board" id="puzzleBoard" aria-label="Puzzle board"></div>
+        <div class="puzzle-bar">
+          <span class="moves">Moves <strong id="puzzleMoves">0</strong></span>
+          <button class="btn btn--ghost btn--small" type="button" id="puzzlePeek">Peek 👀</button>
+          <button class="btn btn--ghost btn--small" type="button" id="puzzleRestart">Shuffle ↺</button>
+        </div>
+        <p class="hint">Drag a piece onto another to swap them — or tap two pieces.</p>
+      </div>
+      <div class="done-card" id="puzzleDone" hidden>
+        <p class="done-card__title" data-config="texts.puzzleDone"></p>
+        <button class="btn" type="button" data-goto="cake">Next surprise →</button>
+      </div>
+    </section>
+
+    <!-- ============ 03 · CAKE ============ -->
+    <section id="cake" class="screen" aria-labelledby="cakeTitle">
+      <header class="section-head">
+        <p class="eyebrow">03 — The cake</p>
+        <h2 class="title" id="cakeTitle" tabindex="-1">Build your cake</h2>
+        <p class="subtitle" data-config="texts.cakeSubtitle"></p>
+      </header>
+      <div class="builder" id="cakeBuilder">
+        <div class="stage" id="cakeStage">
+          <svg id="cakeSvg" class="cake-svg" viewBox="0 30 320 290" role="img" aria-label="Your birthday cake"></svg>
+          <p class="stage__wish" id="cakeWish" aria-live="polite"></p>
+        </div>
+        <div class="builder__side">
+          <div class="panel" id="cakePanel"></div>
+          <div class="builder__actions" id="cakeActions">
+            <p class="builder__hint" id="cakeHint" aria-live="polite"></p>
+            <button class="btn" type="button" id="cakeFinish">Finish my cake 🎂</button>
+          </div>
+        </div>
+      </div>
+      <div class="done-card" id="cakeDone" hidden>
+        <p class="done-card__title" data-config="texts.cakeDone"></p>
+        <p class="done-card__text" data-config="texts.cakeNext"></p>
+        <button class="btn" type="button" data-goto="bouquet">Continue →</button>
+      </div>
+    </section>
+
+    <!-- ============ 04 · BOUQUET ============ -->
+    <section id="bouquet" class="screen" aria-labelledby="bouquetTitle">
+      <header class="section-head">
+        <p class="eyebrow">04 — The bouquet</p>
+        <h2 class="title" id="bouquetTitle" tabindex="-1">Compose your bouquet</h2>
+        <p class="subtitle" data-config="texts.bouquetSubtitle"></p>
+      </header>
+      <div class="builder" id="bouquetBuilder">
+        <div class="stage" id="bouquetStage">
+          <svg id="bouquetSvg" class="bouquet-svg" viewBox="0 30 400 475" role="img" aria-label="Your bouquet"></svg>
+        </div>
+        <div class="builder__side">
+          <div class="panel" id="bouquetPanel"></div>
+          <div class="builder__actions" id="bouquetActions">
+            <p class="builder__hint" id="bouquetHint" aria-live="polite"></p>
+            <button class="btn" type="button" id="bouquetFinish">Finish the bouquet 💐</button>
+          </div>
+        </div>
+      </div>
+      <div class="done-card" id="bouquetDone" hidden>
+        <p class="done-card__text" data-config="texts.bouquetLine1"></p>
+        <p class="done-card__title done-card__title--script" data-config="texts.bouquetLine2"></p>
+        <button class="btn" type="button" data-goto="finale">Open your last surprise 🎁</button>
+      </div>
+    </section>
+
+    <!-- ============ FINALE ============ -->
+    <section id="finale" class="screen screen--finale" aria-labelledby="finaleTitle">
+      <div class="finale-sky" id="finaleSky" aria-hidden="true"></div>
+      <div class="finale-inner">
+        <div class="finale-gifts">
+          <div class="finale-gift" id="finaleCake"></div>
+          <figure class="polaroid" id="finalePhoto">
+            <img alt="A memory of us" width="220" height="220" decoding="async">
+            <figcaption data-config="photoCaption"></figcaption>
+          </figure>
+          <div class="finale-gift" id="finaleBouquet"></div>
+        </div>
+        <h2 class="finale-title" id="finaleTitle" tabindex="-1">Happy Birthday, <em data-config="name"></em> <span class="heart">♡</span></h2>
+        <div class="finale-message" id="finaleMessage"></div>
+        <p class="finale-sign" data-config="from"></p>
+        <button class="btn btn--ghost btn--small" type="button" id="replay">Replay the journey ↺</button>
+      </div>
+    </section>
+
+  </main>
+
+  <canvas id="confettiCanvas" class="fx-canvas fx-canvas--confetti" aria-hidden="true"></canvas>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 800" width="800" height="800">
+  <!-- Placeholder puzzle image — replace with your own photo (see README) -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E4DAF0"/><stop offset=".55" stop-color="#F8DDE4"/><stop offset="1" stop-color="#FFF1E6"/>
+    </linearGradient>
+    <radialGradient id="sun"><stop offset="0" stop-color="#FFF6E0"/><stop offset=".55" stop-color="#FBE3C4" stop-opacity=".9"/><stop offset="1" stop-color="#FBE3C4" stop-opacity="0"/></radialGradient>
+    <symbol id="daisy" viewBox="-40 -40 80 80">
+      <g fill="#FFFFFF" stroke="#EADFD6" stroke-width="1">
+        <ellipse cy="-20" rx="7" ry="18"/><ellipse cy="-20" rx="7" ry="18" transform="rotate(30)"/><ellipse cy="-20" rx="7" ry="18" transform="rotate(60)"/>
+        <ellipse cy="-20" rx="7" ry="18" transform="rotate(90)"/><ellipse cy="-20" rx="7" ry="18" transform="rotate(120)"/><ellipse cy="-20" rx="7" ry="18" transform="rotate(150)"/>
+        <ellipse cy="-20" rx="7" ry="18" transform="rotate(180)"/><ellipse cy="-20" rx="7" ry="18" transform="rotate(210)"/><ellipse cy="-20" rx="7" ry="18" transform="rotate(240)"/>
+        <ellipse cy="-20" rx="7" ry="18" transform="rotate(270)"/><ellipse cy="-20" rx="7" ry="18" transform="rotate(300)"/><ellipse cy="-20" rx="7" ry="18" transform="rotate(330)"/>
+      </g>
+      <circle r="10" fill="#F2C14E"/>
+    </symbol>
+    <symbol id="bloom" viewBox="-40 -40 80 80">
+      <g fill="#F2B5C4">
+        <circle cy="-17" r="15"/><circle cx="16" cy="-5" r="15"/><circle cx="10" cy="14" r="15"/><circle cx="-10" cy="14" r="15"/><circle cx="-16" cy="-5" r="15"/>
+      </g>
+      <circle r="9" fill="#9E5267"/><circle r="4" fill="#F5DDE3"/>
+    </symbol>
+    <symbol id="tulip" viewBox="-40 -40 80 80">
+      <path d="M-22,-4 C-24,-26 -15,-36 -7,-36 L0,-22 L7,-36 C15,-36 24,-26 22,-4 C19,18 -19,18 -22,-4Z" fill="#C9B6E4"/>
+      <path d="M-9,-22 C-8,-36 8,-36 9,-22 C10,-6 -10,-6 -9,-22Z" fill="#AE98D0"/>
+    </symbol>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#sky)"/>
+  <circle cx="560" cy="290" r="210" fill="url(#sun)"/>
+  <circle cx="560" cy="290" r="92" fill="#FCE5CB"/>
+
+  <!-- clouds -->
+  <g fill="#FFFFFF" opacity=".85">
+    <ellipse cx="170" cy="168" rx="96" ry="26"/><ellipse cx="214" cy="148" rx="56" ry="32"/><ellipse cx="140" cy="152" rx="40" ry="24"/>
+    <ellipse cx="640" cy="110" rx="70" ry="18"/><ellipse cx="672" cy="96" rx="38" ry="22"/>
+  </g>
+
+  <!-- balloons -->
+  <path d="M110,330 C120,390 96,440 120,520" fill="none" stroke="#9E5267" stroke-width="2"/>
+  <path d="M160,300 C150,370 176,430 150,520" fill="none" stroke="#9E5267" stroke-width="2"/>
+  <ellipse cx="108" cy="290" rx="40" ry="48" fill="#E9B8C4"/><path d="M102,336 L114,336 L108,346Z" fill="#E9B8C4"/>
+  <ellipse cx="94" cy="272" rx="9" ry="14" fill="#fff" opacity=".45"/>
+  <ellipse cx="162" cy="258" rx="36" ry="44" fill="#C9B6E4"/><path d="M156,300 L168,300 L162,309Z" fill="#C9B6E4"/>
+  <ellipse cx="150" cy="242" rx="8" ry="12" fill="#fff" opacity=".45"/>
+
+  <!-- birds -->
+  <g fill="none" stroke="#9E5267" stroke-width="3" stroke-linecap="round" opacity=".55">
+    <path d="M380,170 q12,-12 24,0 q12,-12 24,0"/><path d="M440,210 q9,-9 18,0 q9,-9 18,0"/>
+  </g>
+
+  <!-- hills -->
+  <path d="M0,520 C150,450 300,470 420,520 C540,570 680,480 800,500 L800,800 L0,800Z" fill="#CFDCC9"/>
+  <path d="M0,610 C200,548 360,610 520,588 C650,570 720,604 800,594 L800,800 L0,800Z" fill="#A8B9A3"/>
+
+  <!-- words -->
+  <text x="420" y="470" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="78" fill="#9E5267">you &amp; me ♡</text>
+
+  <!-- foreground flowers -->
+  <g stroke="#7E9A72" stroke-width="5" stroke-linecap="round" fill="none">
+    <path d="M90,800 L96,650"/><path d="M200,800 C196,740 210,700 214,690"/><path d="M330,800 L326,676"/>
+    <path d="M470,800 C476,740 462,700 466,684"/><path d="M600,800 L604,660"/><path d="M720,800 C716,740 728,700 724,690"/>
+  </g>
+  <g fill="#94A88E">
+    <path d="M96,730 C70,712 60,690 74,682 C92,690 98,710 96,730Z"/><path d="M330,740 C356,720 368,700 352,692 C336,700 330,720 330,740Z"/>
+    <path d="M604,730 C630,712 640,690 626,682 C608,690 602,710 604,730Z"/><path d="M466,750 C440,732 432,712 446,704 C462,712 468,730 466,750Z"/>
+  </g>
+  <use xlink:href="#daisy" href="#daisy" x="46" y="600" width="100" height="100"/>
+  <use xlink:href="#bloom" href="#bloom" x="164" y="640" width="100" height="100"/>
+  <use xlink:href="#tulip" href="#tulip" x="276" y="636" width="100" height="100"/>
+  <use xlink:href="#daisy" href="#daisy" x="416" y="634" width="100" height="100"/>
+  <use xlink:href="#bloom" href="#bloom" x="550" y="606" width="110" height="110"/>
+  <use xlink:href="#tulip" href="#tulip" x="674" y="640" width="100" height="100"/>
+  <use xlink:href="#daisy" href="#daisy" x="250" y="560" width="64" height="64" opacity=".8"/>
+  <use xlink:href="#bloom" href="#bloom" x="640" y="560" width="60" height="60" opacity=".8"/>
+</svg>

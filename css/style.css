@@ -93,6 +93,20 @@ img, svg { display: block; max-width: 100%; }
 .corner { position: absolute; width: clamp(110px, 22vw, 230px); height: auto; opacity: .5; }
 .corner--tl { top: 0; left: 0; transform: scaleY(-1); }
 .corner--br { bottom: 0; right: 0; transform: scaleX(-1); }
+.corner--tr { top: 0; right: 0; transform: rotate(180deg); width: clamp(80px, 15vw, 170px); opacity: .4; }
+.corner--bl { bottom: 0; left: 0; width: clamp(80px, 15vw, 170px); opacity: .4; }
+.float-bloom {
+  position: absolute;
+  left: var(--x); top: var(--y);
+  width: var(--s); height: var(--s);
+  opacity: .55;
+  animation: bloomFloat 14s ease-in-out var(--d) infinite;
+}
+.float-bloom--lilac { filter: hue-rotate(60deg) saturate(.8); opacity: .5; }
+@keyframes bloomFloat {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(8px, -14px) rotate(25deg); }
+}
 
 .fx-canvas { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .fx-canvas--petals { z-index: 1; }
@@ -367,6 +381,14 @@ main { position: relative; z-index: 2; }
 
 /* ---------- 10. 02 · Puzzle ---------- */
 .puzzle-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; }
+.puzzle-frame { position: relative; display: flex; justify-content: center; width: 100%; }
+.frame-flower, .frame-bloom { position: absolute; z-index: 25; pointer-events: none; }
+.frame-flower { width: clamp(80px, 22vw, 130px); }
+.frame-flower--tl { top: -34px; left: max(-10px, calc(50% - 290px)); transform: scaleY(-1) rotate(-10deg); }
+.frame-flower--br { bottom: -34px; right: max(-10px, calc(50% - 290px)); transform: scaleX(-1) rotate(-10deg); }
+.frame-bloom { width: clamp(30px, 8vw, 46px); }
+.frame-bloom--tr { top: -16px; right: max(4px, calc(50% - 270px)); }
+.frame-bloom--bl { bottom: -16px; left: max(4px, calc(50% - 270px)); filter: hue-rotate(60deg) saturate(.8); }
 .puzzle-board {
   --cols: 4;
   --rows: 4;

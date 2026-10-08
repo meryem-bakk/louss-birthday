@@ -287,6 +287,7 @@
   /* ---------- Boot ---------- */
   document.addEventListener('DOMContentLoaded', () => {
     applyConfig();
+    new Image().src = CONFIG.puzzleImage; // preload the puzzle photo while she reads the letter
     updateNav();
 
     document.addEventListener('click', (e) => {

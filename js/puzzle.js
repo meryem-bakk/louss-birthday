@@ -24,11 +24,13 @@ function initPuzzle() {
   peek.className = 'puzzle-peek';
   board.appendChild(peek);
 
+  board.classList.add('is-loading'); // hidden until the photo's real shape is known
   prepareImage(CONFIG.puzzleImage).then(build);
 
   /* ---------- Setup ---------- */
   function build(url) {
     peek.style.backgroundImage = `url("${url}")`;
+    board.classList.remove('is-loading');
     for (let id = 0; id < COUNT; id++) {
       const row = Math.floor(id / COLS), col = id % COLS;
       const el = document.createElement('div');

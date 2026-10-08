@@ -28,16 +28,17 @@ const CONFIG = {
 
   /* --- 💌 La lettre ------------------------------------------------- */
   letter: {
-    greeting: "Dear {name},",
+    greeting: "Ma Lousslouss d'amour,",
     paragraphs: [
-      // ✏️ Remplace ces paragraphes par ta vraie lettre (autant que tu veux).
-      "Happy birthday! I can't believe another year has gone by — and that, once again, I'm not there to hug you in person. So I made you this little corner of the internet instead.",
-      "I hope you know how much you mean to me. You're the first person I want to call when something good happens, and the one I trust the most when things get hard. Being far away has never changed that, not even a little.",
-      "Thank you for every late-night conversation, every voice note that was way too long, every inside joke nobody else understands. Thank you for being so wonderfully, completely you.",
-      "This year, I wish you soft mornings, brave adventures and a thousand reasons to laugh. And I promise you this: the next birthday cake, we'll eat it together."
+      "Joyeux anniversaire ! Je n'arrive pas à croire qu'une année de plus est passée… et qu'une fois encore, 537 kilomètres nous séparent. 537 kilomètres, ce n'est rien sur une carte, mais aujourd'hui c'est tout ce qui m'empêche de te serrer fort dans mes bras. Alors je t'ai fabriqué ce petit coin d'internet, pour que tu sentes, au moins un peu, à quel point je pense à toi.",
+      "Tu me manques tellement. Je te vois partout dans Rabat, dans chaque recoin où on passait nos journées. Nos soirées à Dunkin, nos séances de ciné, les warak einab de Yamal Cham qui n'ont plus du tout le même goût sans toi, et le chawarma that just doesn't hit pareil quand tu n'es pas là. Ces endroits ont un petit air triste depuis que tu es partie, comme s'il leur manquait leur plus belle partie.",
+      "Même quand on ne se parle pas tous les jours, je pense à toi chaque jour, sans exception. Je sens ta présence autour de moi, même de loin, et ça me fait monter les larmes aux yeux. D'ailleurs, je t'écris ces mots les yeux pleins de larmes… et honnêtement, je ne changerais rien à ça. Parce que ces larmes-là veulent juste dire que tu comptes énormément pour moi.",
+      "C'est drôle quand j'y pense : c'est l'IAV qui nous a fait nous rencontrer, et c'est aussi l'IAV qui nous a séparées. Mais je ne lui en veux pas vraiment. Parce que sans elle, je n'aurais jamais croisé ton chemin, et je n'aurais jamais connu cette âme si belle, si drôle et si douce que tu es.",
+      "Merci d'être toi, aussi merveilleusement et complètement toi. Merci pour les fous rires, les confidences, les silences qui n'ont jamais été gênants, et pour cette amitié qui ne s'abîme ni avec le temps, ni avec la distance.",
+      "Pour cette nouvelle année, je te souhaite des matins doux, des aventures pleines de courage et mille raisons de sourire. Je souhaite de tout mon cœur que la vie nous réunisse très vite. Et je te le promets : le prochain gâteau d'anniversaire, on le mangera ensemble, toi et moi, à la même table."
     ],
-    signoff: "With all my love,",
-    signature: "{from}"
+    signoff: "Avec tout mon amour, aujourd'hui et pour toujours,",
+    signature: "Your forever friend ♡"
   },
 
   /* --- Petits textes du parcours ----------------------------------- */

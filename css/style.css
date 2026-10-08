@@ -493,7 +493,7 @@ main { position: relative; z-index: 2; }
 .panel__label { margin: 14px 0 0; font-size: .7rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--text-soft); }
 .options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 
-.flower-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+.flower-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; margin-top: 12px; }
 .flower-card {
   display: flex;
   flex-direction: column;
@@ -582,7 +582,6 @@ main { position: relative; z-index: 2; }
 @media (min-width: 560px) {
   .steps { --li-w: 72px; --gap: 6px; }
   .step-label { display: block; }
-  .flower-grid { grid-template-columns: repeat(6, 1fr); }
 }
 @media (min-width: 900px) {
   .screen { padding-left: 32px; padding-right: 32px; }
@@ -592,9 +591,7 @@ main { position: relative; z-index: 2; }
   .stage::before { content: ""; position: absolute; inset: 6% 8%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 255, 255, .95), rgba(255, 255, 255, 0)); z-index: -1; }
   .cake-svg, .bouquet-svg { max-height: 62vh; width: min(100%, 480px); }
   .panel { padding: 18px; }
-  .flower-grid { grid-template-columns: repeat(3, 1fr); }
 }
-@media (min-width: 1200px) { .flower-grid { grid-template-columns: repeat(6, 1fr); } }
 @media (max-height: 700px) and (max-width: 899px) {
   .section-head .subtitle { display: none; }
   .section-head { margin-bottom: .8rem; }

@@ -72,6 +72,40 @@ function initBouquetBuilder() {
         }
         return `<g transform="rotate(${rot})">${buds}</g>`;
       }).join('')
+    },
+    {
+      id: 'peony', label: 'Peonies', icon: '💮', pref: 'center', size: 1.4,
+      colors: { pink: ['#F4B6C6', '#E08DA6'], coral: ['#F6B4A0', '#E08A74'], cream: ['#FBF0EA', '#E3CFC6'] },
+      draw: (c) => petals(9, (a) => `<ellipse cx="0" cy="-15" rx="12" ry="15" fill="${c.dark}" transform="rotate(${a})"/>`)
+        + petals(7, (a) => `<ellipse cx="0" cy="-11" rx="11" ry="13" fill="${c.main}" stroke="${c.dark}" stroke-width=".6" transform="rotate(${a + 20})"/>`)
+        + petals(5, (a) => `<ellipse cx="0" cy="-6" rx="7.5" ry="9" fill="${c.main}" stroke="${c.dark}" stroke-width=".6" transform="rotate(${a + 40})"/>`)
+        + `<circle r="5" fill="${c.dark}" opacity=".55"/>`
+    },
+    {
+      id: 'poppy', label: 'Poppies', icon: '🌺', pref: 'center', size: 1.35,
+      colors: { red: ['#E0626C', '#B8414F'], coral: ['#F4A585', '#D97C5C'], white: ['#FBF4F0', '#E2D2CC'] },
+      draw: (c) => petals(4, (a) => `<path d="M0,0 C-16,-6 -20,-26 -6,-30 C2,-33 10,-32 14,-26 C22,-14 12,-4 0,0Z" fill="${c.main}" stroke="${c.dark}" stroke-width=".8" transform="rotate(${a})"/>`)
+        + '<circle r="7" fill="#3A2E33"/>' + petals(10, (a) => `<circle cx="0" cy="-9" r="1.4" fill="#3A2E33" transform="rotate(${a})"/>`)
+        + '<circle r="3" fill="#6B8A6A"/>'
+    },
+    {
+      id: 'hydrangea', label: 'Hydrangeas', icon: '💠', pref: 'center', size: 1.3,
+      colors: { blue: ['#BCCDEB', '#93A9D2'], lilac: ['#D9C9EE', '#B7A1DA'], pink: ['#F3C7D8', '#DCA0BA'] },
+      draw: (c) => {
+        let s = `<circle r="27" fill="${c.dark}" opacity=".45"/>`;
+        [[0, 0], [-13, -8], [13, -8], [-15, 8], [15, 8], [0, -17], [0, 16], [-24, 0], [24, 0], [-9, -21], [9, -21], [-9, 20], [9, 20]].forEach(([x, y], i) => {
+          s += `<g transform="translate(${x},${y}) rotate(${i * 23})">${petals(4, (a) =>
+            `<ellipse cx="0" cy="-3.6" rx="3.4" ry="4" fill="${i % 3 ? c.main : c.dark}" transform="rotate(${a})"/>`)}<circle r="1.2" fill="#fff" opacity=".8"/></g>`;
+        });
+        return s;
+      }
+    },
+    {
+      id: 'forgetmenot', label: 'Forget-me-nots', icon: '💙', pref: 'edge', size: 1.3,
+      colors: { blue: ['#A9C6EC', '#7FA2D6'], pink: ['#F4C6D3', '#DE9DB2'], white: ['#FFFFFF', '#DCE3EC'] },
+      draw: (c) => `<path d="M0,22 C-2,6 -10,-4 -16,-12 M0,22 C2,6 8,-8 14,-16 M0,22 C0,8 0,-6 0,-20" stroke="#8FA587" stroke-width="1.4" fill="none"/>`
+        + [[-16, -12, 1], [14, -16, 1], [0, -20, 1.1], [-8, -2, 0.9], [8, -4, 0.9], [-20, -24, 0.8], [20, -28, 0.8], [2, -32, 0.85]].map(([x, y, k]) =>
+          `<g transform="translate(${x},${y}) scale(${k})">${petals(5, (a) => `<circle cx="0" cy="-3.6" r="3.3" fill="${c.main}" stroke="${c.dark}" stroke-width=".4" transform="rotate(${a})"/>`)}<circle r="1.6" fill="#F6D776"/></g>`).join('')
     }
   ];
   const FLOWER = Object.fromEntries(FLOWERS.map((f) => [f.id, f]));
@@ -97,10 +131,11 @@ function initBouquetBuilder() {
   const SLOTS = [
     [200, 205, 1.12], [152, 222, 1.02], [248, 222, 1.02], [200, 155, 1], [158, 170, 0.95], [242, 170, 0.95],
     [124, 262, 0.95], [276, 262, 0.95], [200, 262, 1], [110, 205, 0.9], [290, 205, 0.9], [150, 124, 0.85],
-    [250, 124, 0.85], [200, 108, 0.85], [88, 160, 0.8], [312, 160, 0.8], [166, 288, 0.88], [234, 288, 0.88]
+    [250, 124, 0.85], [200, 108, 0.85], [88, 160, 0.8], [312, 160, 0.8], [166, 288, 0.88], [234, 288, 0.88],
+    [64, 214, 0.75], [336, 214, 0.75], [124, 88, 0.75], [276, 88, 0.75]
   ].map(([x, y, s]) => [x, y + 24, s]); // nestled into the paper
-  const CENTER_ORDER = [0, 1, 2, 3, 4, 5, 8, 6, 7, 9, 10, 11, 12, 13, 16, 17, 14, 15];
-  const EDGE_ORDER = [11, 12, 14, 15, 9, 10, 13, 6, 7, 16, 17, 3, 4, 5, 1, 2, 0, 8];
+  const CENTER_ORDER = [0, 1, 2, 3, 4, 5, 8, 6, 7, 9, 10, 11, 12, 13, 16, 17, 14, 15, 18, 19, 20, 21];
+  const EDGE_ORDER = [11, 12, 14, 15, 9, 10, 13, 20, 21, 18, 19, 6, 7, 16, 17, 3, 4, 5, 1, 2, 0, 8];
 
   const state = {
     flowers: [], // { type, color, slot, dx, dy, tilt }

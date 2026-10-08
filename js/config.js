@@ -1,4 +1,4 @@
-﻿/* =====================================================================
+/* =====================================================================
    🎀  PERSONNALISATION — tout se modifie ici, sans toucher à la logique
    ---------------------------------------------------------------------
    • {name}, {age}, {from} et {birthday} sont remplacés automatiquement
@@ -19,7 +19,8 @@ const CONFIG = {
 
   // Puzzle : idéalement une photo carrée (sinon elle est recadrée au centre).
   puzzleImage: "assets/puzzle/us.jpg",         // ← ex. "assets/puzzle/photo.jpg"
-  puzzleSize: 4,                            // 4 → 4 × 4 = 16 pièces (3 = facile, 5 = difficile)
+  puzzleCols: 4,                            // 4 colonnes × 2 lignes = 8 pièces
+  puzzleRows: 2,
 
   // Photo de la page finale (vide = on réutilise l'image du puzzle).
   finalPhoto: "",                           // ← ex. "assets/images/us.jpg"

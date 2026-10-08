@@ -4,13 +4,17 @@
    Pointer Events) or by tapping two pieces. Keyboard: Enter.
    ========================================================= */
 function initPuzzle() {
-  const N = Math.max(2, Math.min(6, parseInt(CONFIG.puzzleSize, 10) || 4));
+  const clamp = (v) => Math.max(1, Math.min(6, parseInt(v, 10) || 4));
+  const COLS = clamp(CONFIG.puzzleCols || CONFIG.puzzleSize);
+  const ROWS = clamp(CONFIG.puzzleRows || CONFIG.puzzleSize);
+  const COUNT = COLS * ROWS;
   const board = document.getElementById('puzzleBoard');
   const movesEl = document.getElementById('puzzleMoves');
   const doneCard = document.getElementById('puzzleDone');
   const peekBtn = document.getElementById('puzzlePeek');
   const restartBtn = document.getElementById('puzzleRestart');
-  board.style.setProperty('--n', N);
+  board.style.setProperty('--cols', COLS);
+  board.style.setProperty('--rows', ROWS);
 
   let order = [];   // order[slot] = id of the piece sitting in that slot
   const pieces = []; // pieces[id] = element
@@ -25,21 +29,21 @@ function initPuzzle() {
   /* ---------- Setup ---------- */
   function build(url) {
     peek.style.backgroundImage = `url("${url}")`;
-    for (let id = 0; id < N * N; id++) {
-      const row = Math.floor(id / N), col = id % N;
+    for (let id = 0; id < COUNT; id++) {
+      const row = Math.floor(id / COLS), col = id % COLS;
       const el = document.createElement('div');
       el.className = 'piece';
       el.dataset.id = id;
       el.tabIndex = 0;
       el.setAttribute('role', 'button');
       el.setAttribute('aria-label', `Piece ${id + 1}`);
-      const corner = { 0: 'tl', [N - 1]: 'tr', [N * (N - 1)]: 'bl', [N * N - 1]: 'br' }[id];
+      const corner = { 0: 'tl', [COLS - 1]: 'tr', [COLS * (ROWS - 1)]: 'bl', [COUNT - 1]: 'br' }[id];
       if (corner) el.dataset.corner = corner;
       const img = document.createElement('div');
       img.className = 'piece__img';
       img.style.backgroundImage = `url("${url}")`;
-      img.style.backgroundSize = `${N * 100}% ${N * 100}%`;
-      img.style.backgroundPosition = `${(col / (N - 1)) * 100}% ${(row / (N - 1)) * 100}%`;
+      img.style.backgroundSize = `${COLS * 100}% ${ROWS * 100}%`;
+      img.style.backgroundPosition = `${COLS > 1 ? (col / (COLS - 1)) * 100 : 0}% ${ROWS > 1 ? (row / (ROWS - 1)) * 100 : 0}%`;
       el.appendChild(img);
       board.appendChild(el);
       pieces.push(el);
@@ -97,16 +101,16 @@ function initPuzzle() {
   function slotAt(x, y) {
     const r = board.getBoundingClientRect();
     if (x < r.left || x > r.right || y < r.top || y > r.bottom) return -1;
-    const col = Math.min(N - 1, Math.floor(((x - r.left) / r.width) * N));
-    const row = Math.min(N - 1, Math.floor(((y - r.top) / r.height) * N));
-    return row * N + col;
+    const col = Math.min(COLS - 1, Math.floor(((x - r.left) / r.width) * COLS));
+    const row = Math.min(ROWS - 1, Math.floor(((y - r.top) / r.height) * ROWS));
+    return row * COLS + col;
   }
 
   // Moves a piece to a slot; if `from` (a previous rect) is given, it glides there (FLIP)
   function place(el, slot, from) {
     el.style.transition = 'none';
-    el.style.left = `${((slot % N) * 100) / N}%`;
-    el.style.top = `${(Math.floor(slot / N) * 100) / N}%`;
+    el.style.left = `${((slot % COLS) * 100) / COLS}%`;
+    el.style.top = `${(Math.floor(slot / COLS) * 100) / ROWS}%`;
     el.style.transform = '';
     if (!from) return;
     const now = el.getBoundingClientRect();
@@ -208,13 +212,13 @@ function initPuzzle() {
     moves = 0;
     movesEl.textContent = 0;
     clearSelected();
-    const ids = [...Array(N * N).keys()];
+    const ids = [...Array(COUNT).keys()];
     do {
       for (let i = ids.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [ids[i], ids[j]] = [ids[j], ids[i]];
       }
-    } while (ids.filter((v, i) => v === i).length > Math.max(1, N - 3));
+    } while (ids.filter((v, i) => v === i).length > Math.max(1, Math.floor(COUNT / 6)));
     const rects = animate ? pieces.map((p) => p.getBoundingClientRect()) : [];
     order = ids;
     order.forEach((id, slot) => place(pieces[id], slot, rects[id]));

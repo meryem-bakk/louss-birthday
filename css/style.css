@@ -1,4 +1,4 @@
-﻿/* =========================================================
+/* =========================================================
    Happy Birthday ♡ — styles (mobile first)
    ========================================================= */
 
@@ -368,7 +368,8 @@ main { position: relative; z-index: 2; }
 /* ---------- 10. 02 · Puzzle ---------- */
 .puzzle-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; }
 .puzzle-board {
-  --n: 4;
+  --cols: 4;
+  --rows: 4;
   position: relative;
   width: min(100%, 520px, 58svh);
   aspect-ratio: 1;
@@ -382,8 +383,8 @@ main { position: relative; z-index: 2; }
 }
 .piece {
   position: absolute;
-  width: calc(100% / var(--n));
-  height: calc(100% / var(--n));
+  width: calc(100% / var(--cols));
+  height: calc(100% / var(--rows));
   padding: 2px;
   cursor: grab;
   z-index: 1;

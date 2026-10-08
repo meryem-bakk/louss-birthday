@@ -64,17 +64,6 @@
     <span class="blob blob--sage"></span>
     <svg class="corner corner--tl" viewBox="0 0 200 200"><use href="#sprig"/></svg>
     <svg class="corner corner--br" viewBox="0 0 200 200"><use href="#sprig"/></svg>
-    <svg class="corner corner--tr" viewBox="0 0 200 200"><use href="#sprig"/></svg>
-    <svg class="corner corner--bl" viewBox="0 0 200 200"><use href="#sprig"/></svg>
-    <!-- floating blossoms -->
-    <svg class="float-bloom" style="--x:8%;--y:28%;--s:34px;--d:0s" viewBox="-20 -20 40 40"><use href="#blossom"/></svg>
-    <svg class="float-bloom" style="--x:88%;--y:22%;--s:26px;--d:-3s" viewBox="-20 -20 40 40"><use href="#blossom"/></svg>
-    <svg class="float-bloom" style="--x:92%;--y:62%;--s:40px;--d:-6s" viewBox="-20 -20 40 40"><use href="#blossom"/></svg>
-    <svg class="float-bloom" style="--x:5%;--y:70%;--s:28px;--d:-9s" viewBox="-20 -20 40 40"><use href="#blossom"/></svg>
-    <svg class="float-bloom float-bloom--lilac" style="--x:20%;--y:88%;--s:22px;--d:-4s" viewBox="-20 -20 40 40"><use href="#blossom"/></svg>
-    <svg class="float-bloom float-bloom--lilac" style="--x:76%;--y:90%;--s:30px;--d:-7s" viewBox="-20 -20 40 40"><use href="#blossom"/></svg>
-    <svg class="float-bloom float-bloom--lilac" style="--x:70%;--y:8%;--s:20px;--d:-2s" viewBox="-20 -20 40 40"><use href="#blossom"/></svg>
-    <svg class="float-bloom" style="--x:30%;--y:6%;--s:18px;--d:-11s" viewBox="-20 -20 40 40"><use href="#blossom"/></svg>
   </div>
   <canvas id="petalCanvas" class="fx-canvas fx-canvas--petals" aria-hidden="true"></canvas>
 
@@ -151,13 +140,7 @@
         <p class="subtitle" data-config="texts.puzzleSubtitle"></p>
       </header>
       <div class="puzzle-wrap">
-        <div class="puzzle-frame">
-          <svg class="frame-flower frame-flower--tl" viewBox="0 0 200 200" aria-hidden="true"><use href="#sprig"/></svg>
-          <svg class="frame-flower frame-flower--br" viewBox="0 0 200 200" aria-hidden="true"><use href="#sprig"/></svg>
-          <svg class="frame-bloom frame-bloom--tr" viewBox="-20 -20 40 40" aria-hidden="true"><use href="#blossom"/></svg>
-          <svg class="frame-bloom frame-bloom--bl" viewBox="-20 -20 40 40" aria-hidden="true"><use href="#blossom"/></svg>
-          <div class="puzzle-board" id="puzzleBoard" aria-label="Puzzle board"></div>
-        </div>
+        <div class="puzzle-board" id="puzzleBoard" aria-label="Puzzle board"></div>
         <div class="puzzle-bar">
           <span class="moves">Moves <strong id="puzzleMoves">0</strong></span>
           <button class="btn btn--ghost btn--small" type="button" id="puzzlePeek">Peek 👀</button>

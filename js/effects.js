@@ -123,7 +123,7 @@
       size = fitCanvas(canvas, ctx);
       window.addEventListener('resize', () => { size = fitCanvas(canvas, ctx); });
       document.addEventListener('visibilitychange', start);
-      const count = REDUCED ? 0 : size.w < 640 ? 14 : 24;
+      const count = REDUCED ? 0 : size.w < 640 ? 9 : 16;
       for (let i = 0; i < count; i++) items.push(make(false));
       start();
     }
